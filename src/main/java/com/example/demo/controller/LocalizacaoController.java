@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 
 import com.example.demo.dto.localizacao.LocalizacaoDto;
+import com.example.demo.model.Contentor;
 import com.example.demo.model.Localizacao;
+import com.example.demo.service.ContentorService;
 import com.example.demo.service.LocalizacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +19,15 @@ public class LocalizacaoController {
     @Autowired
     LocalizacaoService localizacaoService;
 
-    //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
-    @PostMapping("/create")
-    public LocalizacaoDto create (@RequestBody LocalizacaoDto localizacaoDto){
+    @Autowired
+    ContentorService contentorService;
 
-        Localizacao localizacao = localizacaoService.create(localizacaoDto);
+    //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
+    @PostMapping("/create/{id}")
+    public LocalizacaoDto create (@PathVariable (name = "id") Integer id,@RequestBody LocalizacaoDto localizacaoDto){
+
+        Contentor contentor = contentorService.findById(id);
+        Localizacao localizacao = localizacaoService.create(localizacaoDto, contentor);
 
         return LocalizacaoDto.fromModel(localizacao);
     }

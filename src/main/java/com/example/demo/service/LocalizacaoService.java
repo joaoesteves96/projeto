@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.dto.localizacao.LocalizacaoDto;
+import com.example.demo.model.Contentor;
 import com.example.demo.model.Localizacao;
 import com.example.demo.repository.LocalizacaoRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,7 @@ public class LocalizacaoService {
     @Autowired
     LocalizacaoRepository localizacaoRepository;
 
-    public Localizacao create(LocalizacaoDto localizacaoDto){
+    public Localizacao create(LocalizacaoDto localizacaoDto, Contentor contentor){
 
         Localizacao localizacao = new Localizacao();
 
@@ -34,6 +35,9 @@ public class LocalizacaoService {
         localizacao.setLocalidade(localizacaoDto.getLocalidade());
         localizacao.setCoordenadas1(localizacaoDto.getCoordenadas1());
         localizacao.setCoordenadas2(localizacaoDto.getCoordenadas2());
+        localizacao.setAtual(true);
+
+        localizacao.setContentor(contentor);
 
         localizacaoRepository.save(localizacao);
 

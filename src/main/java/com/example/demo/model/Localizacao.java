@@ -17,6 +17,8 @@ public class Localizacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
+    private boolean atual;
+    @Column
     private String localidade;
     @Column
     private String rua;
@@ -26,5 +28,9 @@ public class Localizacao {
     private Double coordenadas1;
     @Column
     private Double coordenadas2;
+
+    @ManyToOne
+    @JoinColumn (name = "fk_contentor")
+    private Contentor contentor;
 
 }

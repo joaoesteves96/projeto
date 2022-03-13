@@ -14,6 +14,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class VeiculoDto {
 
+    private Integer id;
+
     private String matricula;
 
     private String marca;
@@ -44,7 +46,7 @@ public class VeiculoDto {
 
         */
         // TODO estudar isto melhor
-        return veiculo==null ? null : new VeiculoDto(veiculo.getMatricula(),veiculo.getMarca(),veiculo.getModelo()
+        return veiculo==null ? null : new VeiculoDto(veiculo.getId(),veiculo.getMatricula(),veiculo.getMarca(),veiculo.getModelo()
                                 ,veiculo.getData().toString(),veiculo.getCarga(),veiculo.getLugares(),veiculo.getCombustivel());
     }
 
