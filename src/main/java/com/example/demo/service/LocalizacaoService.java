@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.dto.localizacao.LocalizacaoDto;
 import com.example.demo.model.Contentor;
 import com.example.demo.model.Localizacao;
+import com.example.demo.repository.ContentorRepository;
 import com.example.demo.repository.LocalizacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Transactional
 @RequiredArgsConstructor
@@ -26,7 +29,26 @@ public class LocalizacaoService {
     @Autowired
     LocalizacaoRepository localizacaoRepository;
 
+
+
+    private void setFalseLastLocation (LocalizacaoDto localizacaoDto) {
+
+        Set<Localizacao> localizacoes = em.createNamedQuery("Localizacao.findAllByContentor",Localizacao.class)
+                .setParameter(1,localizacaoDto.getContentor().getId()).getResultStream().collect(Collectors.toSet());
+        for (Localizacao l : localizacoes){
+            l.setAtual(false);
+        }
+
+        localizacaoRepository.saveAll(localizacoes);
+
+
+    }
+
+
     public Localizacao create(LocalizacaoDto localizacaoDto, Contentor contentor){
+
+        setFalseLastLocation(localizacaoDto);
+
 
         Localizacao localizacao = new Localizacao();
 

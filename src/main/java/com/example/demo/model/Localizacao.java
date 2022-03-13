@@ -11,6 +11,9 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Localizacao.findAllByContentor",query = "SELECT l FROM Localizacao l WHERE l.contentor.id = ?1")
+})
 public class Localizacao {
 
     @Id
