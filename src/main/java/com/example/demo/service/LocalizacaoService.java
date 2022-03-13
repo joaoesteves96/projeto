@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @RequiredArgsConstructor
@@ -39,5 +40,26 @@ public class LocalizacaoService {
         return localizacao;
     }
 
-    // TODO: public Localizacao findById (Integer id)----???
+    public List<Localizacao> findAll () {
+        return localizacaoRepository.findAll();
+    }
+
+    public Localizacao findById(Integer id) {
+        return localizacaoRepository.getById(id);
+    }
+
+    public void deleteById(Integer id) {
+        localizacaoRepository.deleteById(id);
+    }
+
+    public Localizacao updateById(Integer id, LocalizacaoDto localizacaoDto) {
+        Localizacao localizacao = findById(id);
+        localizacao.setLocalidade(localizacaoDto.getLocalidade());
+        localizacao.setDescricao(localizacaoDto.getDescricao());
+        localizacao.setCoordenadas1(localizacaoDto.getCoordenadas1());
+        localizacao.setCoordenadas2(localizacaoDto.getCoordenadas2());
+        localizacao.setRua(localizacaoDto.getRua());
+        localizacaoRepository.save(localizacao);
+        return localizacao;
+    }
 }
