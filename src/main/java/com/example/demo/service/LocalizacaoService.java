@@ -30,7 +30,7 @@ public class LocalizacaoService {
     LocalizacaoRepository localizacaoRepository;
 
 
-
+    //metodo que passa o campo "atual" das localizacoes de 1 para falso a cada utilizacao
     private void setFalseLastLocation (LocalizacaoDto localizacaoDto) {
 
         Set<Localizacao> localizacoes = em.createNamedQuery("Localizacao.findAllByContentor",Localizacao.class)
