@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 
-//TODO: muitas duvidas como nao e preciso DTOs o create e o updateBy nao precisam dos sets e de criar novos objetos???
+//TODO: duvidas como nao e preciso DTOs o create e o updateBy nao precisam dos sets e de criar novos objetos???
 @Service
 @RequiredArgsConstructor
 @Transactional

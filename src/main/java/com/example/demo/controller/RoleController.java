@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: Duvidas por nao ter Dto.
+//TODO: findById e update no serializer error.
 @RestController
 @RequestMapping("/roles")
 public class RoleController {
 
     @Autowired
+    private
     RoleService roleService;
 
     @PostMapping("/create")
@@ -30,17 +31,12 @@ public class RoleController {
         return list;
     }
 
-
-    //TODO o if no return tem de ser revisto
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
     @GetMapping("/{id}")
+    @ResponseBody
     public Role findById(@PathVariable(name = "id") Integer id) {
-        Role role1 = roleService.findById(id);
-        if (role1 == null){
-            return null;
-        }else{
-            return role1;
-        }
+        return roleService.findById(id);
+
     }
 
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
@@ -50,12 +46,10 @@ public class RoleController {
     }
 
 
-    //TODO shady stuff
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
     @PutMapping("/{id}")
     public Role update(@PathVariable(name = "id") Integer id, @RequestBody Role role) {
-        role = roleService.updateById(id, role);
-        return role;
+        return roleService.updateById(id, role);
     }
 
 }

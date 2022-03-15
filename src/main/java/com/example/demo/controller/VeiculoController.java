@@ -15,6 +15,7 @@ import java.util.List;
 public class VeiculoController {
 
     @Autowired
+    private
     VeiculoService veiculoService;
 
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
@@ -53,8 +54,8 @@ public class VeiculoController {
 
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE
     @PutMapping("/{id}")
-    public VeiculoDto update(@PathVariable(name = "id") Integer id, @RequestBody VeiculoDto localizacaoDto) {
-        Veiculo veiculo = veiculoService.updateById(id, localizacaoDto);
+    public VeiculoDto update(@PathVariable(name = "id") Integer id, @RequestBody VeiculoDto veiculoDto) {
+        Veiculo veiculo = veiculoService.updateById(id, veiculoDto);
         return VeiculoDto.fromModel(veiculo);
     }
 }
