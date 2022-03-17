@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,7 +29,21 @@ public class UtilizadorService {
     @Autowired
     private UtilizadorRepository utilizadorRepository;
 
+    private String hashPassword(String plainTextPassword) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(plainTextPassword.getBytes(),0, plainTextPassword.length());
+            String hashedPass = new BigInteger(1,messageDigest.digest()).toString(16);
+            if (hashedPass.length() < 32) {
+                hashedPass = "0" + hashedPass;
+            }
+            return hashedPass;
 
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public Utilizador create (UtilizadorDto utilizadorDto) {
 
@@ -43,7 +60,8 @@ public class UtilizadorService {
         utilizador.setNumeroSs(utilizadorDto.getNumeroSs());
         utilizador.setNif(utilizadorDto.getNif());
         utilizador.setTelemovel(utilizadorDto.getTelemovel());
-        
+        utilizador.setUsername(utilizadorDto.getUsername());
+        utilizador.setPasswordMd5(hashPassword(utilizadorDto.getPasswordMd5()));
 
         utilizadorRepository.save(utilizador);
         
