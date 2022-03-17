@@ -11,6 +11,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+       @NamedQuery(name = "Utilizador.findByNif", query = "SELECT u FROM Utilizador u WHERE u.nif = ?1")
+})
 public class Utilizador {
 
     @Id

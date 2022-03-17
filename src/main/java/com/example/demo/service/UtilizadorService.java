@@ -70,14 +70,12 @@ public class UtilizadorService {
 
     }
 
+    public Utilizador findByNif (String nif){
 
-    //TODO: finBy NIF?? talvez
-/*    public Utilizador findByMatricula (String matricula){
-
-        return em.createNamedQuery("Utilizador.findByMatricula", Utilizador.class)
-                .setParameter(1,matricula)
+        return em.createNamedQuery("Utilizador.findByNif", Utilizador.class)
+                .setParameter(1,nif)
                 .getResultList().stream().findFirst().orElse(null);
-    }*/
+    }
 
 
     private Date castStringToDate(String dateStr) {
