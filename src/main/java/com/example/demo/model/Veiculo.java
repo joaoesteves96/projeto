@@ -7,6 +7,7 @@ import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
@@ -36,6 +37,8 @@ public class Veiculo {
     @Column
     private String combustivel;
 
-
+    //Set mesmo que List mas mais otimizado
+    @OneToMany (mappedBy = "veiculo")
+    private Set<Contentor> contentors;
 
 }

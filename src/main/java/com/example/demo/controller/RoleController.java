@@ -24,11 +24,7 @@ public class RoleController {
 
     @GetMapping
     public List<Role> findAll(){
-        List<Role> list = new ArrayList<>();
-        for (Role v: roleService.findAll()) {
-            list.add(v);
-        }
-        return list;
+        return roleService.findAll();
     }
 
     //METER AQUI NOME DA REQUEST do postman por exemplo POSTMAN-COLECAO XPTO: REQUEST ABCDE

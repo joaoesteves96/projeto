@@ -29,4 +29,8 @@ public class Contentor {
     @OneToMany (mappedBy = "contentor")
     private Set<Localizacao> localizacoes;
 
+    @ManyToOne
+    @JoinColumn (name = "fk_veiculo")
+    private Contentor veiculo;
+
 }

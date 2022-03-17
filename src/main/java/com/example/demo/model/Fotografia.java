@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,18 +10,19 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Role {
+@NamedQueries({
+        @NamedQuery(name = "Fotografia.findByNomeFicheiro", query = "SELECT f FROM Fotografia f where f.url = ?1")
+})
+public class Fotografia {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column
-    private String descricao;
+    private String url;
 
-    @OneToOne(mappedBy = "role")
+    @OneToOne(mappedBy = "fotografia")
     private Utilizador utilizador;
-
-
-    //@OneToOne??????????????????
-    //private Utilizador role;
 }

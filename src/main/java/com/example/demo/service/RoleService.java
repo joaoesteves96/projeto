@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Role;
+import com.example.demo.model.Utilizador;
 import com.example.demo.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,7 @@ public class RoleService {
     public Role create(Role role){
         Role role1 = new Role();
         role1.setDescricao(role.getDescricao());
-
         roleRepository.save(role1);
-
         return role1;
     }
 

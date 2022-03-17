@@ -38,15 +38,16 @@ public class Utilizador {
     private Integer nif;
     @Column
     private Integer telemovel;
-
-
-    //TODO: ver estes possiveis dados
-/*
-    private Object foto;
-    private Role role;
+    @Column
     private String username;
-    private String password;
-*/
+    @Column
+    private String passwordMd5;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fotografia_id", referencedColumnName = "id")
+    private Fotografia fotografia;
 
 
 }
