@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.empregado.UtilizadorDto;
+import com.example.demo.dto.utilizador.UtilizadorDto;
 import com.example.demo.model.Utilizador;
 import com.example.demo.repository.UtilizadorRepository;
 import lombok.RequiredArgsConstructor;

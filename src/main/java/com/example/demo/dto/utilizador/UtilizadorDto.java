@@ -1,16 +1,11 @@
-package com.example.demo.dto.empregado;
+package com.example.demo.dto.utilizador;
 
+import com.example.demo.model.Fotografia;
 import com.example.demo.model.Role;
 import com.example.demo.model.Utilizador;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -47,14 +42,15 @@ public class UtilizadorDto {
 
     private Role role;
 
-    private String urlFoto;
+    private Fotografia fotografia;
 
+    //TODO: dava erro neste return, estava utilizador.getUrlFoto(), mudei para getfotografia e mudei os dados de private String urlFoto para private Fotografia fotografia
     public static UtilizadorDto fromModel (Utilizador utilizador){
 
         return utilizador == null ? null : new UtilizadorDto(utilizador.getId(),utilizador.getPrimeiroNome(),utilizador.getApelido()
                     ,utilizador.getDataNascimento().toString(),utilizador.getEndereco(),utilizador.getEmail(),utilizador.getNaturalidade()
                       ,utilizador.getCidade(),utilizador.getEstadoCivil(),utilizador.getNumeroSs(),utilizador.getNif()
-                         ,utilizador.getTelemovel(), utilizador.getUsername(), utilizador.getPasswordMd5(), utilizador.getRole(), utilizador.getUrlFoto());
+                         ,utilizador.getTelemovel(), utilizador.getUsername(), utilizador.getPasswordMd5(), utilizador.getRole(), utilizador.getFotografia());
     }
 
 }

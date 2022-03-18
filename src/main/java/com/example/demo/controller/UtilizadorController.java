@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.dto.empregado.UtilizadorDto;
+import com.example.demo.dto.utilizador.UtilizadorDto;
 import com.example.demo.model.Utilizador;
 import com.example.demo.service.UtilizadorService;
 import org.springframework.beans.factory.annotation.Autowired;

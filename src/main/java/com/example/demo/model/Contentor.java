@@ -33,4 +33,8 @@ public class Contentor {
     @JoinColumn (name = "fk_veiculo")
     private Contentor veiculo;
 
+    //TODO: not sure do many to one
+    @ManyToOne
+    @JoinColumn (name = "fk_rota")
+    private Rota rota;
 }

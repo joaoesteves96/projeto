@@ -37,8 +37,15 @@ public class Veiculo {
     @Column
     private String combustivel;
 
+    //TODO: contentors ou contentores?
     //Set mesmo que List mas mais otimizado
     @OneToMany (mappedBy = "veiculo")
     private Set<Contentor> contentors;
+
+
+    //TODO: one to one do veiculo
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rota_id", referencedColumnName = "id")
+    private Rota rota;
 
 }

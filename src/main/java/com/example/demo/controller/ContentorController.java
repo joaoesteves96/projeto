@@ -16,7 +16,7 @@ public class ContentorController {
 
     @Autowired
     ContentorService contentorService;
-    
+
     @PostMapping("/create")
     public ContentorDto create(@RequestBody ContentorDto contentorDto){
 
